@@ -23,6 +23,13 @@ function createListItem(text) {
   };
 
   li.appendChild(closeButton);
+
+  // Add click event listener to toggle line-through style
+  li.addEventListener("click", function() {
+    li.style.textDecoration = li.style.textDecoration === "line-through" ? "" : "line-through";
+});
+
+
   return li;
 }
 
@@ -44,17 +51,14 @@ function newElement() {
     return;
   }
 
-let li = createListItem(inputValue);
-document.getElementById("myUL").appendChild(li);
-let storedItems = JSON.parse(localStorage.getItem('listItems')) || [];
-storedItems.push(inputValue);
-localStorage.setItem('listItems', JSON.stringify(storedItems));
-document.getElementById("myInput").value = "";
+  let li = createListItem(inputValue);
+  document.getElementById("myUL").appendChild(li);
+  let storedItems = JSON.parse(localStorage.getItem('listItems')) || [];
+  storedItems.push(inputValue);
+  localStorage.setItem('listItems', JSON.stringify(storedItems));
+  document.getElementById("myInput").value = "";
 }
 
 // Get the HTML button and add a click event listener
 document.getElementById('addBtn').addEventListener('click', newElement);
 
-// document.getElementById("myAnchor").addEventListener("click", function(event){
-//   event.preventDefault()
-// });
